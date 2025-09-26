@@ -15,11 +15,3 @@ Quick Q&A with code examples and mini diagrams for visual understanding. Perfect
 var a = 10;
 let b = 20;
 const c = 30;
-----
-## Visual:
-Scope
- ├─ Global
- │   ├─ var a
- │   ├─ let b
- │   └─ const c
- └─ Function/Block scopes
