@@ -1,7 +1,5 @@
 # JavaScript Interview Q&A
 
-A curated list of 30 common JavaScript interview questions with **short answers, code examples, and mini diagrams** for quick revision. 🚀
-
 ---
 
 ## 1. What are `var`, `let`, and `const`?
@@ -461,6 +459,176 @@ Object.seal(obj);   // props editable only
 ```
 
 ---
+
+## 31. Difference between Promise.all, Promise.any, Promise.allSettled, and Promise.race
+
+**Answer:**  
+- `Promise.all`: waits for all promises to resolve or rejects on first error.  
+- `Promise.any`: resolves as soon as any promise resolves; rejects if all fail.  
+- `Promise.allSettled`: waits for all to settle, returns their statuses.  
+- `Promise.race`: resolves or rejects as soon as first promise settles.
+
+---
+
+## 32. What is callback hell? How do promises/async fix it?
+
+**Answer:**  
+- Nested callbacks causing unreadable code.  
+- Promises and async/await flatten code and handle errors better.
+
+---
+
+## 33. What are web workers?
+
+**Answer:**  
+- Background threads running JS separate from the main thread to handle heavy tasks without blocking UI.
+
+---
+
+## 34. Difference between synchronous and asynchronous scripts (defer vs async)
+
+**Answer:**  
+- `async`: script executes as soon as it's downloaded, does not wait for HTML parsing.  
+- `defer`: script executes after HTML parsing is complete, preserving order.
+
+---
+
+## 35. Difference between localStorage, sessionStorage, and cookies
+
+**Answer:**  
+- `localStorage`: persists with no expiration.  
+- `sessionStorage`: cleared on tab close.  
+- Cookies: sent with HTTP requests, size limited.
+
+---
+
+## 36. What is CORS? Why do we need it?
+
+**Answer:**  
+- Cross-Origin Resource Sharing controls how browsers and servers communicate to prevent unauthorized cross-domain requests.
+
+---
+
+## 37. Explain same-origin policy
+
+**Answer:**  
+- Browser security model restricting scripts from accessing resources from a different origin (protocol, domain, port).
+
+---
+
+## 38. Difference between for…of, for…in, and forEach
+
+**Answer:**  
+- `for...of`: iterates values of iterable objects.  
+- `for...in`: iterates enumerable properties (keys).  
+- `forEach`: array method to execute a function on each item.
+
+---
+
+## 39. Explain memoization. Implement it in JS
+
+**Answer:**  
+- Technique to cache results of expensive function calls.
+
+```
+const memoize = (fn) => {
+  const cache = {};
+  return (arg) => cache[arg] ??= fn(arg);
+};
 ```
 
-Would you like me to continue this block from **31 onwards (async internals, web workers, memory mgmt, etc.)** so the README grows into a 50+ Q&A full handbook?
+---
+
+## 40. Explain the difference between setTimeout and setImmediate
+
+**Answer:**  
+- `setTimeout`: executes after the timer completes (minimum delay).  
+- `setImmediate`: executes after I/O events callbacks (Node.js specific).
+
+---
+
+## 41. How does garbage collection work in JavaScript?
+
+**Answer:**  
+- Automatically frees memory of objects no longer referenced by the code.
+
+---
+
+## 42. Difference between NaN, Infinity, and isNaN()
+
+**Answer:**  
+- `NaN`: result of invalid math operation.  
+- `Infinity`: value greater than any number.  
+- `isNaN()`: checks if a value is NaN.
+
+---
+
+## 43. Explain event bubbling pitfalls with setTimeout(() => {}, 0)
+
+**Answer:**  
+- setTimeout callbacks run after current call stack and microtasks, possibly leading to unexpected event ordering.
+
+---
+
+## 44. Difference between Object.freeze and Object.seal
+
+**Answer:**  
+- `freeze`: no modifications allowed.  
+- `seal`: prevents adding/removing properties, but allows modification.
+
+---
+
+## 45. Difference between promises and observables
+
+**Answer:**  
+- Promise: resolves once with single value.  
+- Observable: streams multiple values over time.
+
+---
+
+## 46. How does JavaScript handle memory leaks?
+
+**Answer:**  
+- Occur when unused objects are still referenced, e.g., by closures or global variables, preventing garbage collection.
+
+---
+
+## 47. Explain immutability in JavaScript
+
+**Answer:**  
+- Data that cannot be changed after creation; changes return new copies instead.
+
+---
+
+## 48. Difference between global, function, and block scope
+
+**Answer:**  
+- Global: accessible everywhere.  
+- Function: accessible within the function.  
+- Block: accessible within `{}` (let/const).
+
+---
+
+## 49. Write code to flatten a nested array
+
+**Answer:**
+
+```
+const flatten = arr => arr.flat(Infinity);
+```
+
+---
+
+## 50. Explain prototypes and prototypal inheritance
+
+**Answer:**  
+- Each object has a prototype object from which it inherits properties and methods.
+
+```
+const proto = { greet() { return "Hi"; } };
+const obj = Object.create(proto);
+console.log(obj.greet());
+```
+
+---
+
