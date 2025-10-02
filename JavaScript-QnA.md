@@ -1,6 +1,6 @@
 # JavaScript Interview Q&A
 
-A curated list of 20 common JavaScript interview questions with **short answers, code examples, and mini diagrams** for quick revision. 🚀
+A curated list of 30 common JavaScript interview questions with **short answers, code examples, and mini diagrams** for quick revision. 🚀
 
 ---
 
@@ -11,15 +11,14 @@ A curated list of 20 common JavaScript interview questions with **short answers,
 - `let` → block-scoped, can be updated but not re-declared.  
 - `const` → block-scoped, cannot be updated or re-declared.
 
-```js
+```
 var a = 10;
 let b = 20;
 const c = 30;
-````
+```
 
 **Visual:**
-
-```text
+```
 Scope
  ├─ Global
  │   ├─ var a
@@ -32,12 +31,11 @@ Scope
 
 ## 2. What is hoisting?
 
-**Answer:**
-
-* Variable and function declarations are moved to the top of their scope.
+**Answer:**  
+* Variable and function declarations are moved to the top of their scope.  
 * Initializations are **not hoisted**.
 
-```js
+```
 console.log(x); // undefined
 var x = 5;
 
@@ -46,8 +44,7 @@ function foo() { console.log("Hello"); }
 ```
 
 **Visual:**
-
-```text
+```
 Compilation: var x; function foo() {}
 Execution: x = 5; foo()
 ```
@@ -56,11 +53,10 @@ Execution: x = 5; foo()
 
 ## 3. Explain closures.
 
-**Answer:**
-
+**Answer:**  
 * Function that **remembers its lexical scope** even after outer function finishes.
 
-```js
+```
 function outer() {
   let count = 0;
   return function inner() {
@@ -74,8 +70,7 @@ console.log(counter()); // 2
 ```
 
 **Visual:**
-
-```text
+```
 outer() scope
  └─ inner() remembers count
 ```
@@ -84,67 +79,49 @@ outer() scope
 
 ## 4. Difference between `==` and `===`
 
-**Answer:**
+**Answer:**  
+- `==` → value equality (type coercion allowed)  
+- `===` → strict equality (type + value)
 
-* `==` → value equality (type coercion allowed)
-* `===` → strict equality (type + value)
-
-```js
+```
 5 == '5'  // true
 5 === '5' // false
-```
-
-**Visual:**
-
-```text
-5 == '5'  -> converts '5' -> 5 == 5 ✅
-5 === '5' -> type mismatch ❌
 ```
 
 ---
 
 ## 5. Difference between `null` and `undefined`
 
-**Answer:**
+**Answer:**  
+- `undefined` → variable declared, not assigned  
+- `null` → explicitly “no value”
 
-* `undefined` → variable declared, not assigned
-* `null` → explicitly “no value”
-
-```js
+```
 let a;
 console.log(a); // undefined
 let b = null;
 console.log(b); // null
 ```
 
-**Visual:**
-
-```text
-Declared but empty -> undefined
-Explicit no value -> null
-```
-
 ---
 
 ## 6. Explain `this` keyword
 
-**Answer:**
-
+**Answer:**  
 * Refers to the **current execution context**.
 
-```js
+```
 console.log(this); // window/global object
 
 function foo() { console.log(this); }
-foo(); // window
+foo(); // window (in browsers)
 
 const obj = { foo };
 obj.foo(); // obj
 ```
 
 **Visual:**
-
-```text
+```
 Function call -> global
 Method call   -> owning object
 Arrow func    -> lexical this
@@ -154,18 +131,16 @@ Arrow func    -> lexical this
 
 ## 7. What is the event loop?
 
-**Answer:**
-
+**Answer:**  
 * JS is single-threaded. Event loop handles async callbacks **without blocking** the main thread.
 
-```js
+```
 console.log("Start");
 setTimeout(() => { console.log("Timeout"); }, 0);
 console.log("End");
 ```
 
 **Output:**
-
 ```
 Start
 End
@@ -173,8 +148,7 @@ Timeout
 ```
 
 **Visual:**
-
-```text
+```
 Call Stack -> Web API -> Callback Queue -> Event Loop -> Stack
 ```
 
@@ -182,18 +156,16 @@ Call Stack -> Web API -> Callback Queue -> Event Loop -> Stack
 
 ## 8. Event bubbling and capturing
 
-**Answer:**
+**Answer:**  
+- Bubbling → event moves child → parent → ancestor  
+- Capturing → ancestor → parent → child  
 
-* Event bubbling → event moves from **child → parent → ancestor**
-* Event capturing → event moves from **ancestor → parent → child**
-
-```js
+```
 child.addEventListener('click', e => console.log('Child clicked'), false);
 ```
 
 **Visual:**
-
-```text
+```
 Capturing: Grandparent -> Parent -> Child
 Bubbling: Child -> Parent -> Grandparent
 ```
@@ -202,37 +174,26 @@ Bubbling: Child -> Parent -> Grandparent
 
 ## 9. Arrow functions vs regular functions
 
-**Answer:**
+**Answer:**  
+- Arrow → no own `this`, cannot be constructor, shorter syntax  
+- Regular → dynamic `this`, usable as constructor  
 
-* Arrow functions **do not have their own `this`**
-* Cannot be used as constructors
-* Shorter syntax
-
-```js
-const add = (a, b) => a + b;
 ```
-
-**Visual:**
-
-```text
-Arrow -> lexical this
-Function -> dynamic this
+const add = (a, b) => a + b;
 ```
 
 ---
 
 ## 10. Callback functions
 
-**Answer:**
+**Answer:**  
+* A function passed as argument to be called later.
 
-* A function passed as an argument to another function, executed later.
-
-```js
+```
 function greet(name, callback) {
   console.log(`Hi ${name}`);
   callback();
 }
-
 greet('Alice', () => console.log('Callback executed'));
 ```
 
@@ -240,13 +201,12 @@ greet('Alice', () => console.log('Callback executed'));
 
 ## 11. Promises
 
-**Answer:**
+**Answer:**  
+* Represent future completion of async operation.  
+* States: pending → resolved/rejected.  
 
-* Represent future completion of async operation.
-* Methods: `.then()`, `.catch()`, `.finally()`
-
-```js
-let p = new Promise((resolve, reject) => resolve('Done'));
+```
+let p = new Promise((resolve) => resolve('Done'));
 p.then(res => console.log(res));
 ```
 
@@ -254,11 +214,10 @@ p.then(res => console.log(res));
 
 ## 12. Async/Await
 
-**Answer:**
+**Answer:**  
+* Syntax sugar for Promises. Writes async code like sync.
 
-* Syntax sugar over Promises, allows **writing async code like sync**.
-
-```js
+```
 async function fetchData() {
   let res = await fetch('url');
   console.log(await res.json());
@@ -269,36 +228,32 @@ async function fetchData() {
 
 ## 13. Synchronous vs Asynchronous
 
-**Answer:**
+**Answer:**  
+- Sync → blocks until done.  
+- Async → non-blocking.  
 
-* Sync → executes one by one, blocks code
-* Async → executes independently, non-blocking
-
-```js
+```
 console.log("A");
 setTimeout(() => console.log("B"), 0);
-console.log("C");
-// Output: A C B
+console.log("C"); // A C B
 ```
 
 ---
 
 ## 14. JavaScript data types
 
-**Answer:**
-
-* Primitive → string, number, boolean, null, undefined, symbol, bigint
-* Reference → objects, arrays, functions
+**Answer:**  
+- Primitive: string, number, boolean, null, undefined, symbol, bigint  
+- Reference: objects, arrays, functions
 
 ---
 
 ## 15. Template literals
 
-**Answer:**
+**Answer:**  
+* Backticks with `${}` for interpolation.
 
-* Backticks `` ` `` for string interpolation and multi-line strings
-
-```js
+```
 let name = 'Alice';
 console.log(`Hello ${name}`);
 ```
@@ -307,12 +262,11 @@ console.log(`Hello ${name}`);
 
 ## 16. Destructuring
 
-**Answer:**
+**Answer:**  
+* Extract values from arrays/objects.
 
-* Extract values from arrays/objects
-
-```js
-const [a, b] = [1, 2];
+```
+const [a, b] = ;
 const {x, y} = {x: 10, y: 20};
 ```
 
@@ -320,11 +274,10 @@ const {x, y} = {x: 10, y: 20};
 
 ## 17. Default parameters
 
-**Answer:**
+**Answer:**  
+* Functions can have default args.
 
-* Functions can have default values
-
-```js
+```
 function greet(name='Guest') { console.log(`Hi ${name}`); }
 greet(); // Hi Guest
 ```
@@ -333,14 +286,12 @@ greet(); // Hi Guest
 
 ## 18. Spread/Rest operator
 
-**Answer:**
+**Answer:**  
+- Spread → expand values  
+- Rest → collect into array  
 
-* Spread `...` → expand elements
-* Rest `...` → collect elements into array
-
-```js
-const arr = [1,2];
-const arr2 = [...arr,3]; // [1,2,3]
+```
+const arr2 = [..., 3]; //
 function sum(...nums) { return nums.reduce((a,b)=>a+b,0); }
 ```
 
@@ -348,11 +299,10 @@ function sum(...nums) { return nums.reduce((a,b)=>a+b,0); }
 
 ## 19. JS modules
 
-**Answer:**
+**Answer:**  
+* Export & import across files.
 
-* Export & import code between files
-
-```js
+```
 // module.js
 export const x = 5;
 
@@ -364,11 +314,153 @@ import { x } from './module.js';
 
 ## 20. Higher-order functions
 
-**Answer:**
+**Answer:**  
+* Functions that take/return functions.
 
-* Functions that take or return functions
-
-```js
-const numbers = [1,2,3];
-const doubled = numbers.map(n => n*2);
 ```
+const doubled =.map(n => n*2);
+```
+
+---
+
+## 21. Deep vs shallow copy
+
+**Answer:**  
+- Shallow: shared nested refs.  
+- Deep: full clone.  
+
+```
+let obj = { a: 1, b: { c: 2 } };
+let shallow = { ...obj };
+let deep = JSON.parse(JSON.stringify(obj));
+```
+
+---
+
+## 22. What is an IIFE?
+
+**Answer:**  
+* Function runs immediately.  
+
+```
+(function() { console.log("Hi"); })();
+```
+
+---
+
+## 23. Difference between call, apply, and bind
+
+**Answer:**  
+- `call`: invoke with args list  
+- `apply`: invoke with args array  
+- `bind`: returns new bound function  
+
+```
+function greet(g){ console.log(g, this.name); }
+const user = { name: "Alice" };
+greet.call(user, "Hi");
+greet.apply(user, ["Hello"]);
+const bound = greet.bind(user, "Hey"); bound();
+```
+
+---
+
+## 24. Currying
+
+**Answer:**  
+* Convert multi-arg fn → nested single-arg fns.
+
+```
+const curry = a => b => c => a+b+c;
+console.log(curry(1)(2)(3)); // 6
+```
+
+---
+
+## 25. Prototypal inheritance
+
+**Answer:**  
+* Objects inherit via prototype chain.  
+
+```
+const parent = { greet(){console.log("Hi");} };
+const child = Object.create(parent);
+child.greet();
+```
+
+---
+
+## 26. Event delegation
+
+**Answer:**  
+* Listener on parent handles bubbling children.  
+
+```
+document.getElementById("list").addEventListener("click", e => {
+  if(e.target.tagName === "LI") console.log("Item clicked");
+});
+```
+
+---
+
+## 27. Map, filter, reduce
+
+**Answer:**  
+- `map` → transform array  
+- `filter` → select items  
+- `reduce` → accumulate  
+
+```
+.map(x=>x*2);       //
+.filter(x=>x>1);    //
+.reduce((a,b)=>a+b,0); // 6
+```
+
+---
+
+## 28. Optional chaining & nullish coalescing
+
+**Answer:**  
+- `?.` → safely access nested props  
+- `??` → fallback for null/undefined  
+
+```
+let user = { profile: { name: "Bob" } };
+console.log(user.profile?.name); // Bob
+console.log(user.age ?? 18);     // 18
+```
+
+---
+
+## 29. Debouncing vs throttling
+
+**Answer:**  
+- Debounce → run after inactivity  
+- Throttle → run max once per interval  
+
+```
+function debounce(fn, delay) {
+  let t; return (...args) => {
+    clearTimeout(t); t=setTimeout(()=>fn(...args), delay);
+  };
+}
+```
+
+---
+
+## 30. Object.freeze vs Object.seal
+
+**Answer:**  
+- `freeze`: no add/remove/edit.  
+- `seal`: edit props ok, but no add/remove.  
+
+```
+let obj = { a: 1 };
+Object.freeze(obj); // fully locked
+Object.seal(obj);   // props editable only
+```
+
+---
+```
+
+Would you like me to continue this block from **31 onwards (async internals, web workers, memory mgmt, etc.)** so the README grows into a 50+ Q&A full handbook?
