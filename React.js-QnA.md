@@ -1,4 +1,4 @@
-# React.js Interview Q&A (Core Concepts)
+# React.js Interview Q&A 
 
 ---
 
