@@ -484,8 +484,3 @@ module.exports = {
 - Prefetch pages  
 - Minimize JS & CSS bundles  
 - Use React.memo and lazy loading
-
----
-
-**End of File**
-
